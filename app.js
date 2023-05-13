@@ -17,8 +17,8 @@ var app = express();
 app.use(compression()); // Compress all routes
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
-const mongoDB = "mongodb+srv://sanoy:LfJgQMM0QO4ZRRE7@cluster0.ulw9uyr.mongodb.net/local_library?retryWrites=true&w=majority";
-
+const dev_db_url = "mongodb+srv://sanoy:LfJgQMM0QO4ZRRE7@cluster0.ulw9uyr.mongodb.net/local_library?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 main().catch(err => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
